@@ -1,0 +1,71 @@
+
+<html>
+<head>
+    {% block head %}
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    {% endblock %}
+
+
+	<style>
+	#header {
+	    background-color:black;
+	    color:white;
+	    text-align:center;
+	    padding:5px;
+	}
+	#nav {
+	    line-height:30px;
+	    background-color:#eeeeee;
+	    height:300px;
+	    width:100px;
+	    float:left;
+	    padding:5px; 
+	}
+	#section {
+	    width:350px;
+	    float:left;
+	    padding:10px; 
+	}
+	#footer {
+	    background-color:black;
+	    color:white;
+	    clear:both;
+	    text-align:center;
+	    padding:5px; 
+	}
+	</style>
+
+
+
+</head>
+
+<body background="/static/img/timg.jpg" style="background-size: cover">
+
+
+
+
+	<div id="header">
+	<h1>head info</h1>
+	</div>
+
+	<div id="nav">
+	sec_one<br>
+	sec_two<br>
+	sec_thr<br>
+	</div>
+
+	<div id="section">
+	{% block body %}
+	    {% block section %} {% endblock %}
+	{% block script %}{% endblock %}
+	{% endblock %}
+	</div>
+
+	<div id="footer">
+	Copyright from mikelee.
+	</div>
+
+
+</body>
+
+</html>

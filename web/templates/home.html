@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+<!-- extends not include can replace the content in father block-->
+{% block script %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+        //wangyi:http://music.163.com/api/playlist/detail?id=58451795
+        //douban:https://api.douban.com/v2/book/1220562
+            $(function() {
+                $.getJSON(
+                    "http://query.yahooapis.com/v1/public/yql", {q:
+                    "select * from json where url=\"http://music.163.com/api/playlist/detail?id=58451795\"",
+                    format:"json"},
+                function (data) {
+                    var json = data.query.results.json.result
+                    $('#hide').html(json.tracks["24"].name);
+                    //$('#result').append('<img src="'+ data.query.results.json.result.coverImgUrl +'">');
+                    //$('#result').append('<embed  src="'+ data.query.results.json.result.tracks["23"].mp3Url +'"  width="200" height="45" />');
+            /////////////////////////////$('#result').append('<audio controls="controls"><source src="'+ json.tracks["24"].mp3Url +'" type="audio/mpeg" />Your browser does not support the audio element.</audio>');
+                    /*
+                    var html = '<table border=1 style:{color:white}>';
+
+                    var col = json.trackCount/5;
+                    console.log(col);
+                    for (var i=0;i<col;i++){
+                        html +='<tr>';
+                        for(var j=0;j<5&&i*5+j<json.trackCount;j++){
+
+                            var k=i*5+j;
+                            console.log(k);
+                            var obj = json.tracks[k.toString()];
+    html +='<td>';
+                            html += '<tr><img src="'+obj.album.picUrl+'" width="200" height="200"/></tr>';
+
+    html += '<tr style="color: white">'+obj.name+'</tr>';
+                            html +='</td>';
+
+                        }
+                        html +='</tr>';
+                    }
+                    html +='</table>';
+                    $('#treeList').append(html);*/
+                })
+            });
+        });
+/*
+        function search(){
+
+            var exam = 'http://music.163.com/weapi/search/suggest/multimatch?csrf_token=aea830916c42dd2fe5af4659817ebb52';
+            var bak = 'http://music.163.com/#/search/m/?%23%2Fdiscover%2Fplaylist%2F=&s="+searchuri+"&type=1';
+            var searchId = $('#searchId').val();
+            searchuri = encodeURI(searchId);
+            console.log(searchuri);
+                    $.getJSON(
+                        "http://query.yahooapis.com/v1/public/yql", {q:
+                        "select * from json where url=\"http://music.163.com/weapi/search/suggest/multimatch?csrf_token=aea830916c42dd2fe5af4659817ebb52\"",
+                        format:"json"},
+                    function (data) {
+                        console.log(data)
+
+                    })
+
+
+        };*/
+    </script>
+
+{% endblock %}
+{% block section %}
+
+    <p id="hide" style="color: white">waiting...</p>
+    <div id="result"></div>
+<!--
+<input type="text" id="searchId">
+<button  onclick="search()" >submit</button>-->
+{% endblock %}
